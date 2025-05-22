@@ -67,9 +67,9 @@ Use `--override` to rebuild the vector store if it already exists:
 uv run main.py --pdf-filename therustbook.pdf --override
 ```
 
-The extracted text will be saved to `assets/txt/directory/` using the same name as the PDF (with a `.txt` extension).
+The extracted text will be saved to `assets/txt/` using the same name as the PDF (with a `.txt` extension).
 
-The FAISS vector store will be saved to `vector_stores/<pdf_name>/`, using the PDF filename (without extension) as the folder name.
+The FAISS vector store will be saved to `store/<pdf_name>/`, using the PDF filename (without extension) as the folder name.
 
 
 ## 📚 Example Questions
