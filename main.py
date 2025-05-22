@@ -188,12 +188,14 @@ def parse_args() -> argparse.Namespace:
 def main():
     logger.info("Preparing to embed text")
 
+    args = parse_args()
+
     # Convert PDF to text
-    text_path = pdf_to_text("./assets/pdf/example.pdf")
+    text_path = pdf_to_text(f"./assets/pdf/{args.pdf_filename}.pdf")
 
     # Build vector store from text
     try:
-        vector_store = build_vector_store(text_path)
+        vector_store = build_vector_store(text_path, override=args.override)
     except FileExistsError as e:
         logger.warning(f"File '{text_path}' already exists. Use override=True to rebuild.")
         vector_store = load_vector_store(text_path)

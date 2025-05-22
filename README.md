@@ -1,4 +1,4 @@
-# RAG PDF QA with FAISS + Ollama
+# Raggady Ann
 
 A simple Retrieval-Augmented Generation (RAG) app that lets you ask questions about a PDF using a local Ollama LLM and FAISS vector search.
 
