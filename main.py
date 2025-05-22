@@ -3,9 +3,6 @@ import os
 import logging
 from pathlib import Path
 
-from dotenv import load_dotenv
-load_dotenv()
-
 import ollama
 from pypdf import PdfReader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
@@ -42,7 +39,7 @@ def pdf_to_text(filepath: str) -> Path:
     except ValueError:
         pass
 
-    output_dir = Path(f"./assets/txt/")
+    output_dir = Path("./assets/txt/")
     output_dir.mkdir(parents=True, exist_ok=True)
 
     output_path = output_dir / f"{input_path.stem}.txt"
@@ -55,7 +52,7 @@ def pdf_to_text(filepath: str) -> Path:
 
     reader = PdfReader(input_path)
 
-    with open(output_path, 'w', encoding="utf-8") as f:
+    with open(output_path, "w", encoding="utf-8") as f:
         for i, page in enumerate(reader.pages):
             try:
                 f.write(page.extract_text() + "\n")
@@ -67,9 +64,7 @@ def pdf_to_text(filepath: str) -> Path:
     return output_path
 
 
-def build_vector_store(
-    text_filepath: Path, chunk_size: int = 1000, chunk_overlap: int = 100, override: bool = False
-) -> FAISS:
+def build_vector_store(text_filepath: Path, chunk_size: int = 1000, chunk_overlap: int = 100, override: bool = False) -> FAISS:
     """
     Build vector store from text file.
 
@@ -157,7 +152,7 @@ def init_rag_session(vector_store, model: str = "mistral-nemo:latest", k: int = 
     Question: {question}
     Answer:"""
 
-    while (query := input("> ").strip()):
+    while query := input("> ").strip():
         if query.lower() == "/bye":
             break
 
@@ -170,7 +165,7 @@ def init_rag_session(vector_store, model: str = "mistral-nemo:latest", k: int = 
 
         try:
             response = ollama.generate(model=model, prompt=prompt)
-            response = response['response'].strip()
+            response = response["response"].strip()
             print(f"> {response}")
         except Exception as e:
             print(f"> Exception raised: {e}")
@@ -196,7 +191,7 @@ def main():
     # Build vector store from text
     try:
         vector_store = build_vector_store(text_path, override=args.override)
-    except FileExistsError as e:
+    except FileExistsError:
         logger.warning(f"File '{text_path}' already exists. Use override=True to rebuild.")
         vector_store = load_vector_store(text_path)
 
