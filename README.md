@@ -20,7 +20,7 @@ A simple Retrieval-Augmented Generation (RAG) app that lets you ask questions ab
 1. Install dependencies using [uv](https://github.com/astral-sh/uv):
 
 ```bash
-uv pip install -r requirements.txt
+uv sync
 ```
 
 2. Create a `.env` file with your Ollama host:
