@@ -1,0 +1,17 @@
+[project]
+name = "rag-example"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "faiss-cpu>=1.11.0",
+    "huggingface-hub[hf-xet]>=0.31.4",
+    "langchain>=0.3.25",
+    "langchain-community>=0.3.24",
+    "langchain-huggingface>=0.2.0",
+    "ollama>=0.4.8",
+    "pypdf>=5.5.0",
+    "python-dotenv>=1.1.0",
+    "sentence-transformers>=4.1.0",
+]
