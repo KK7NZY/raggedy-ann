@@ -38,13 +38,13 @@ OLLAMA_HOST=http://localhost:11434
 2. Run the app:
 
 ```bash
-python main.py --pdf-filename therustbook.pdf
+uv run main.py --pdf-filename therustbook.pdf
 ````
 
 Use `--override` to rebuild the vector store if it already exists:
 
 ```bash
-python main.py --pdf-filename therustbook.pdf --override
+uv run main.py --pdf-filename therustbook.pdf --override
 ```
 
 The extracted text will be saved to `assets/txt/directory/` using the same name as the PDF (with a `.txt` extension).
