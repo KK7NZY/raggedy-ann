@@ -212,6 +212,5 @@ def main():
     init_rag_session(vector_store)
 
 
-
 if __name__ == "__main__":
     main()
