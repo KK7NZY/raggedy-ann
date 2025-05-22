@@ -176,6 +176,10 @@ def init_rag_session(vector_store, model: str = "mistral-nemo:latest", k: int = 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="RAG Example using FAISS and Ollama")
     parser.add_argument("--pdf-filename", required=True, help="PDF filename (must exist in 'assets/pdf/')")
+    parser.add_argument("--chunk-size", type=int, default=1000, help="Number of characters per chunk (default: 1000)")
+    parser.add_argument(
+        "--chunk-overlap", type=int, default=100, help="Number of overlapping characters between chunks (default: 100)"
+    )
     parser.add_argument("--override", action="store_true", help="Override existing vector store if it exists", default=False)
     return parser.parse_args()
 
@@ -190,7 +194,9 @@ def main():
 
     # Build vector store from text
     try:
-        vector_store = build_vector_store(text_path, override=args.override)
+        vector_store = build_vector_store(
+            text_path, chunk_size=args.chunk_size, chunk_overlap=args.chunk_overlap, override=args.override
+        )
     except FileExistsError:
         logger.warning(f"File '{text_path}' already exists. Use override=True to rebuild.")
         vector_store = load_vector_store(text_path)
