@@ -19,10 +19,10 @@ logging.getLogger("httpx").setLevel(logging.WARNING)
 
 def pdf_to_text(filepath: str) -> Path:
     """
-    Converts a PDF file to text.
+    Converts a PDF file to text and returns the path of the generated text file.
 
     :filepath: Path to the PDF file to convert to text.
-    :return: None
+    :return: The path of the generated text file containing the extracted text from the PDF.
     """
     if not isinstance(filepath, str):
         raise TypeError("filepath must be a string")
