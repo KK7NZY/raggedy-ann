@@ -58,13 +58,13 @@ direnv allow .
 2. Run the app:
 
 ```bash
-uv run main.py --pdf-filename therustbook.pdf
+uv run main.py --pdf-filename therustbook
 ````
 
 Use `--override` to rebuild the vector store if it already exists:
 
 ```bash
-uv run main.py --pdf-filename therustbook.pdf --override
+uv run main.py --pdf-filename therustbook --override
 ```
 
 The extracted text will be saved to `assets/txt/` using the same name as the PDF (with a `.txt` extension).
